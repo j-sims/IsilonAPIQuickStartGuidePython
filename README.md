@@ -9,8 +9,8 @@ Start by downloading this repository as a zipfile by clicking this link: https:/
 Next, extract the zip file and choose the folder for the Quick Start Guide that suits the use case:
 - Quick Start Guide - python - Pure python example code for direct API interaction
 - Quick Start Guide* - sdk - Object Oriented software developer kit for interacting with the API
-- Quick Start Guide* - powershell - Object Oriented software developer kit for interacting with the API
-- Quick Start Guide* - ansible - Object Oriented software developer kit for interacting with the API
+- Quick Start Guide* - powershell - MS Powershell module for interacting with the API from Powershell
+- Quick Start Guide* - ansible - Ansible modules for simplified ansible playbook automation of Isilon management
 
 \* future release
 
