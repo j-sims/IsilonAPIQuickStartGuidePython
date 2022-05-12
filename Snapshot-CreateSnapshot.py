@@ -1,3 +1,4 @@
+from datetime import datetime
 import requests
 import json
 import urllib3
@@ -39,11 +40,24 @@ else:
     print("Authorization Failed")
     print(response.content)
 
-endpoint = '/6/protocols/smb/shares'
+endpoint = '/1/snapshot/snapshots'
 
-data = json.dumps({'name': 'test', 'path': '/ifs/test'})
+# Set expires for 1H
+import time
+t = datetime.fromtimestamp(time.time())
+snapshot_path = '/ifs/data'
+snapshot_duration = 3600  # 1 Hour
+snapshot_name = 'papi-drive-snapshot-' + t.strftime('%H%M%S')
+expires = int(time.time()) + snapshot_duration
 
-response = session.post(papi + endpoint, data=data, headers=headers,verify=False)
+# Take snapshot
+data = json.dumps(
+    {'path': snapshot_path, 'expires': expires, 'name': snapshot_name})
+response = session.post(papi + endpoint, data=data,
+                        headers=headers, verify=False)
 
-if response.status_code == 201:
-    print('Success!')
+if 200 <= response.status_code < 299:
+    print("Snapshot Create Successful")
+else:
+    print("Snapshot Failed")
+    print(response.content)

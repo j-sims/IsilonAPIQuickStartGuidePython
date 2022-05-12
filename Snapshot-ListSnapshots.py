@@ -39,11 +39,8 @@ else:
     print("Authorization Failed")
     print(response.content)
 
-endpoint = '/6/protocols/smb/shares'
-
-data = json.dumps({'name': 'test', 'path': '/ifs/test'})
-
-response = session.post(papi + endpoint, data=data, headers=headers,verify=False)
-
-if response.status_code == 201:
-    print('Success!')
+endpoint = '/1/snapshot/snapshots'
+response = session.get(papi + endpoint, verify=False)
+result = json.loads(response.content)
+for snap in result['snapshots']:
+    print(f"{snap['name']} - {snap['id']} - {snap['size']}")

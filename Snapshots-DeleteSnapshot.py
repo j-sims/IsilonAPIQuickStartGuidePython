@@ -39,11 +39,16 @@ else:
     print("Authorization Failed")
     print(response.content)
 
-endpoint = '/6/protocols/smb/shares'
+endpoint = '/1/snapshot/snapshots'
 
-data = json.dumps({'name': 'test', 'path': '/ifs/test'})
 
-response = session.post(papi + endpoint, data=data, headers=headers,verify=False)
+snapshot_id = 10
 
-if response.status_code == 201:
-    print('Success!')
+response = session.delete(papi + endpoint + '/' +
+                          str(snapshot_id), verify=False)
+
+if 200 <= response.status_code < 299:
+    print("Snapshot Delete Successful")
+else:
+    print("Snapshot Delete Failed")
+    print(response.content)
