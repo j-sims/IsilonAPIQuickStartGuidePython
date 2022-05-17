@@ -3,7 +3,7 @@ import json
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) # Supresses the self signed cert warning
 
-CLUSTERIP = '10.231.153.39'
+CLUSTERIP = '172.16.10.10'
 PORT=8080
 USER='root'
 PASS='a'
